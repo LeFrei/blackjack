@@ -11,7 +11,7 @@ const config = {
 			fallback: '404.html'
 		}),
 		paths: {
-			base: process.env.NODE_ENV === 'production' ? '/blackjack' : ''
+			base: process.env.NODE_ENV === 'production' ? '/blackjack/page' : ''
 		}
 	}
 };

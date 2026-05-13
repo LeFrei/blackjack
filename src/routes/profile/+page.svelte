@@ -1,10 +1,13 @@
 <script lang="ts">
     import { onMount } from 'svelte';
 
+    import { game, stats } from '$lib/game.svelte';
+
     let username = $state('');
     let email = $state('');
     let password = $state('');
     let showSuccess = $state(false);
+    let shopMessage = $state('');
 
     onMount(() => {
         const storedProfile = localStorage.getItem('blackjack_profile');
@@ -26,6 +29,15 @@
         setTimeout(() => {
             showSuccess = false;
         }, 3000);
+    }
+
+    function buyJoker() {
+        if (game.buyJoker()) {
+            shopMessage = 'Joker gekauft! 🃏';
+        } else {
+            shopMessage = 'Nicht genug Token! 🪙';
+        }
+        setTimeout(() => shopMessage = '', 2000);
     }
 </script>
 

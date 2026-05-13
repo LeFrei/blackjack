@@ -7,8 +7,8 @@
 
     import { stats } from '$lib/game.svelte';
 
-    let showJokerModal = $state(false);
     let showAbilityMenu = $state(false);
+    let showRoundResult = $state(false);
     const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'] as const;
 
     // If game state is idle, redirect to home
@@ -20,9 +20,18 @@
 
     $effect(() => {
         if (game.status !== 'playing' && game.status !== 'idle') {
-            setTimeout(() => {
-                goto(`${base}/result`);
-            }, 1000); // 1s delay before redirecting to result page
+            showRoundResult = true;
+            
+            const timer = setTimeout(() => {
+                showRoundResult = false;
+                if (game.matchRound < 5) {
+                    game.nextRound();
+                } else {
+                    goto(`${base}/result`);
+                }
+            }, 1500); // 1.5s delay for automatic transition
+
+            return () => clearTimeout(timer);
         }
     });
 
@@ -190,6 +199,25 @@
                 >
                     Abbrechen
                 </button>
+            </div>
+        </div>
+    {/if}
+
+    <!-- Round Result Overlay -->
+    {#if showRoundResult}
+        <div 
+            class="fixed inset-0 flex items-center justify-center z-[110] pointer-events-none"
+            in:fly={{ y: 100, duration: 400 }}
+        >
+            <div class="bg-blue-950/90 border-2 {game.status === 'playerWon' ? 'border-green-500 shadow-green-500/50' : game.status === 'dealerWon' ? 'border-red-500 shadow-red-500/50' : 'border-yellow-500 shadow-yellow-500/50'} px-12 py-8 rounded-3xl shadow-2xl backdrop-blur-md">
+                <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter italic {game.status === 'playerWon' ? 'text-green-400' : game.status === 'dealerWon' ? 'text-red-500' : 'text-yellow-400'}">
+                    {game.status === 'playerWon' ? 'Gewonnen!' : game.status === 'dealerWon' ? 'Verloren' : 'Unentschieden'}
+                </h2>
+                {#if game.matchRound < 5}
+                    <div class="text-center mt-4 text-blue-200 font-bold tracking-widest uppercase animate-pulse">
+                        Nächste Runde folgt...
+                    </div>
+                {/if}
             </div>
         </div>
     {/if}

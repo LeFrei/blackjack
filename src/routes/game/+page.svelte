@@ -4,19 +4,20 @@
     import Card from '$lib/components/Card.svelte';
     import { fly } from 'svelte/transition';
     import { base } from '$app/paths';
-
     import { stats } from '$lib/game.svelte';
+    import { onMount } from 'svelte';
 
     let showAbilityMenu = $state(false);
     let showRoundResult = $state(false);
+    let showJokerModal = $state(false);
     const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'] as const;
 
-    // If game state is idle, redirect to home
-    if (game.status === 'idle') {
-        if (typeof window !== 'undefined') {
+    onMount(() => {
+        // If game state is idle, redirect to home
+        if (game.status === 'idle') {
             goto(`${base}/`);
         }
-    }
+    });
 
     $effect(() => {
         if (game.status !== 'playing' && game.status !== 'idle') {

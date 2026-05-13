@@ -28,10 +28,17 @@ jobs:
       - name: Build
         run: pnpm run build
 
+      - name: Prepare subfolder
+        run: |
+          mkdir staging
+          mv build staging/page
+          # Copy 404.html to the root for better SPA support
+          cp staging/page/404.html staging/404.html
+
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'build/'
+          path: 'staging/'
 
   deploy:
     needs: build_site

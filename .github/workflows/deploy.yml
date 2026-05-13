@@ -32,6 +32,8 @@ jobs:
         run: |
           mkdir staging
           mv build staging/page
+          # Create a redirect at the root index.html
+          echo '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0; url=/blackjack/page/"></head><body><a href="/blackjack/page/">Redirecting to Blackjack...</a></body></html>' > staging/index.html
           # Copy 404.html to the root for better SPA support
           cp staging/page/404.html staging/404.html
 

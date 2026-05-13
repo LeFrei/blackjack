@@ -30,7 +30,7 @@
                 } else {
                     goto(`${base}/result`);
                 }
-            }, 1500); // 1.5s delay for automatic transition
+            }, 3000); // 3s delay for automatic transition
 
             return () => clearTimeout(timer);
         }
@@ -214,6 +214,17 @@
                 <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter italic {game.status === 'playerWon' ? 'text-green-400' : game.status === 'dealerWon' ? 'text-red-500' : 'text-yellow-400'}">
                     {game.status === 'playerWon' ? 'Gewonnen!' : game.status === 'dealerWon' ? 'Verloren' : 'Unentschieden'}
                 </h2>
+                <div class="flex justify-center items-center gap-8 mt-6">
+                    <div class="flex flex-col items-center">
+                        <span class="text-xs text-blue-400 uppercase tracking-widest mb-1">Du</span>
+                        <span class="text-3xl md:text-4xl font-bold {game.playerScore > 21 ? 'text-red-400' : 'text-white'}">{game.playerScore}</span>
+                    </div>
+                    <div class="text-2xl font-light text-blue-600">vs</div>
+                    <div class="flex flex-col items-center">
+                        <span class="text-xs text-blue-400 uppercase tracking-widest mb-1">Dealer</span>
+                        <span class="text-3xl md:text-4xl font-bold {game.dealerScore > 21 ? 'text-red-400' : 'text-white'}">{game.dealerScore}</span>
+                    </div>
+                </div>
                 {#if game.matchRound < 5}
                     <div class="text-center mt-4 text-blue-200 font-bold tracking-widest uppercase animate-pulse">
                         Nächste Runde folgt...

@@ -53,8 +53,8 @@
                     <span class="text-2xl font-bold text-blue-400">👁️ {stats.peeks}</span>
                 </div>
                 <div class="flex flex-col items-center p-4 bg-green-400/5 rounded-xl border border-green-400/10">
-                    <span class="text-xs text-green-400 uppercase mb-1">Schilde</span>
-                    <span class="text-2xl font-bold text-green-400">🛡️ {stats.shields}</span>
+                    <span class="text-xs text-green-400 uppercase mb-1">Tausch</span>
+                    <span class="text-2xl font-bold text-green-400">🔄 {stats.swaps}</span>
                 </div>
             </div>
         </div>

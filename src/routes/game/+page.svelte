@@ -8,6 +8,7 @@
     import { stats } from '$lib/game.svelte';
 
     let showJokerModal = $state(false);
+    let showAbilityMenu = $state(false);
     const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'] as const;
 
     // If game state is idle, redirect to home
@@ -49,8 +50,8 @@
             <div class="flex items-center gap-1" title="Dealer-Blick">
                 <span class="text-blue-400">👁️</span> {stats.peeks}
             </div>
-            <div class="flex items-center gap-1" title="Glücksbringer">
-                <span class="text-green-400">🛡️</span> {stats.shields}
+            <div class="flex items-center gap-1" title="Kartentausch">
+                <span class="text-green-400">🔄</span> {stats.swaps}
             </div>
         </div>
     </div>
@@ -101,7 +102,7 @@
     </div>
 
     <!-- Actions -->
-    <div class="mt-auto pt-6 flex flex-wrap justify-center gap-4 md:gap-8 pb-4">
+    <div class="mt-auto pt-6 flex flex-wrap justify-center gap-4 md:gap-8 pb-4 relative">
         <button 
             onclick={() => game.hit()}
             disabled={game.status !== 'playing'}
@@ -116,20 +117,56 @@
         >
             Aufhören
         </button>
-        <button 
-            onclick={() => showJokerModal = true}
-            disabled={game.status !== 'playing' || stats.jokers <= 0}
-            class="px-8 py-4 bg-purple-600 text-white text-xl font-bold rounded-full shadow-lg hover:bg-purple-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 border-2 border-purple-400"
-        >
-            Joker (🃏 {stats.jokers})
-        </button>
-        <button 
-            onclick={() => game.usePeek()}
-            disabled={game.status !== 'playing' || stats.peeks <= 0 || game.isPeekActive}
-            class="px-8 py-4 bg-blue-600 text-white text-xl font-bold rounded-full shadow-lg hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 border-2 border-blue-400"
-        >
-            Blick (👁️ {stats.peeks})
-        </button>
+
+        <div class="relative">
+            <button 
+                onclick={() => showAbilityMenu = !showAbilityMenu}
+                disabled={game.status !== 'playing'}
+                class="px-8 py-4 bg-blue-600 text-white text-xl font-bold rounded-full shadow-lg hover:bg-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 border-2 border-blue-400"
+            >
+                Fähigkeiten ✨
+            </button>
+
+            {#if showAbilityMenu}
+                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 bg-blue-900 border-2 border-blue-400 rounded-2xl shadow-2xl overflow-hidden z-50 p-2 space-y-2">
+                    <button 
+                        onclick={() => { showJokerModal = true; showAbilityMenu = false; }}
+                        disabled={stats.jokers <= 0}
+                        class="w-full p-3 flex items-center justify-between hover:bg-blue-800 rounded-xl transition-colors disabled:opacity-40"
+                    >
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">🃏</span>
+                            <span class="text-white font-bold">Joker</span>
+                        </div>
+                        <span class="bg-blue-700 px-2 py-1 rounded text-xs font-bold text-blue-200">{stats.jokers}</span>
+                    </button>
+
+                    <button 
+                        onclick={() => { game.usePeek(); showAbilityMenu = false; }}
+                        disabled={stats.peeks <= 0 || game.isPeekActive}
+                        class="w-full p-3 flex items-center justify-between hover:bg-blue-800 rounded-xl transition-colors disabled:opacity-40"
+                    >
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">👁️</span>
+                            <span class="text-white font-bold">Blick</span>
+                        </div>
+                        <span class="bg-blue-700 px-2 py-1 rounded text-xs font-bold text-blue-200">{stats.peeks}</span>
+                    </button>
+
+                    <button 
+                        onclick={() => { game.useSwap(); showAbilityMenu = false; }}
+                        disabled={stats.swaps <= 0}
+                        class="w-full p-3 flex items-center justify-between hover:bg-blue-800 rounded-xl transition-colors disabled:opacity-40"
+                    >
+                        <div class="flex items-center gap-3">
+                            <span class="text-2xl">🔄</span>
+                            <span class="text-white font-bold">Tausch</span>
+                        </div>
+                        <span class="bg-blue-700 px-2 py-1 rounded text-xs font-bold text-blue-200">{stats.swaps}</span>
+                    </button>
+                </div>
+            {/if}
+        </div>
     </div>
 
     <!-- Joker Modal -->

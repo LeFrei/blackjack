@@ -14,6 +14,7 @@
 
 	let links = [
 		{ href: `${base}/`, label: 'Spiel' },
+		{ href: `${base}/shop`, label: 'Shop' },
 		{ href: `${base}/stats`, label: 'Statistik' },
 		{ href: `${base}/profile`, label: 'Profil' }
 	];

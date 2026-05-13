@@ -38,6 +38,25 @@
                 <span class="text-blue-200 text-lg">Unentschieden</span>
                 <span class="text-2xl font-bold text-yellow-400">{stats.draws}</span>
             </div>
+
+            <div class="pt-4 mt-4 border-t border-blue-700/50 grid grid-cols-2 gap-4">
+                <div class="flex flex-col items-center p-4 bg-yellow-400/5 rounded-xl border border-yellow-400/10">
+                    <span class="text-xs text-yellow-400 uppercase mb-1">Token</span>
+                    <span class="text-2xl font-bold text-yellow-400">🪙 {stats.tokens}</span>
+                </div>
+                <div class="flex flex-col items-center p-4 bg-purple-400/5 rounded-xl border border-purple-400/10">
+                    <span class="text-xs text-purple-400 uppercase mb-1">Joker</span>
+                    <span class="text-2xl font-bold text-purple-400">🃏 {stats.jokers}</span>
+                </div>
+                <div class="flex flex-col items-center p-4 bg-blue-400/5 rounded-xl border border-blue-400/10">
+                    <span class="text-xs text-blue-400 uppercase mb-1">Blicke</span>
+                    <span class="text-2xl font-bold text-blue-400">👁️ {stats.peeks}</span>
+                </div>
+                <div class="flex flex-col items-center p-4 bg-green-400/5 rounded-xl border border-green-400/10">
+                    <span class="text-xs text-green-400 uppercase mb-1">Schilde</span>
+                    <span class="text-2xl font-bold text-green-400">🛡️ {stats.shields}</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>

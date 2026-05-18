@@ -35,9 +35,12 @@
 				<div in:fade={{ duration: 200 }} class="space-y-6">
 					<div class="bg-blue-800/40 p-6 rounded-xl border border-blue-400/10">
 						<h2 class="text-2xl font-bold text-yellow-400 mb-3">🎯 Ziel des Spiels</h2>
-						<p class="text-blue-50 leading-relaxed">
+						<p class="text-blue-50 leading-relaxed mb-3">
 							Das Ziel beim Blackjack ist es, mit den eigenen Karten näher an den Wert von <strong>21</strong> zu kommen als der Dealer, ohne diesen Wert zu überschreiten. 
-							Überschreitet man 21 Punkte, hat man sich "überkauft" (Bust) und verliert sofort, unabhängig davon, was der Dealer hat.
+							Überschreitet man 21 Punkte, hat man sich "überkauft" (Bust) und verliert die Runde sofort.
+						</p>
+						<p class="text-blue-50 leading-relaxed">
+							<strong>Besonderheit:</strong> Ein Match besteht immer aus <strong>5 Runden</strong> (Best-of-5). Wer die Mehrheit der Runden gewinnt, erhält am Ende <strong>Token</strong> für den Shop!
 						</p>
 					</div>
 
@@ -47,16 +50,19 @@
 							<li>Jeder Spieler und der Dealer erhalten zu Beginn <strong>zwei Karten</strong>.</li>
 							<li>Die Karten der Spieler liegen meist offen. Der Dealer hat eine offene und eine verdeckte Karte.</li>
 							<li>Ist man an der Reihe, kann man weitere Karten verlangen (<strong>Hit</strong>), um näher an 21 zu kommen.</li>
+							<li><strong>Achtung:</strong> Immer wenn du ziehst, zieht der Dealer (sofern er unter 17 Punkte hat) gleichzeitig eine Karte!</li>
 							<li>Wenn man zufrieden ist, bleibt man stehen (<strong>Stand</strong>).</li>
-							<li>Man kann seinen Einsatz verdoppeln (<strong>Double</strong>), erhält dann aber genau noch eine weitere Karte.</li>
 						</ul>
 					</div>
 
 					<div class="bg-blue-800/40 p-6 rounded-xl border border-blue-400/10">
-						<h2 class="text-2xl font-bold text-yellow-400 mb-3">👑 Der Dealer</h2>
+						<h2 class="text-2xl font-bold text-yellow-400 mb-3">👑 Der Dealer & Der Shop</h2>
+						<p class="text-blue-50 leading-relaxed mb-3">
+							Wenn du auf "Stand" klickst, deckt der Dealer seine verdeckte Karte auf und zieht so lange weitere Karten, bis er mindestens <strong>17 Punkte</strong> erreicht hat.
+						</p>
 						<p class="text-blue-50 leading-relaxed">
-							Nachdem alle Spieler ihre Entscheidungen getroffen haben, deckt der Dealer seine zweite Karte auf. 
-							Der Dealer muss nach festen Regeln ziehen: Er muss bei 16 oder weniger Punkten eine weitere Karte ziehen und bei 17 oder mehr Punkten stehen bleiben.
+							Mit deinen gewonnenen Token kannst du im Shop mächtige <strong>Spezialfähigkeiten</strong> kaufen:
+							<strong>Joker</strong> (eine Wunschkarte rufen), <strong>Swap</strong> (die zuletzt gezogene Karte austauschen) oder <strong>Peek</strong> (die nächste Karte heimlich ansehen).
 						</p>
 					</div>
 				</div>
@@ -105,8 +111,8 @@
 					<div class="mt-8 bg-blue-950/50 p-4 rounded-lg border border-red-500/30">
 						<h4 class="text-red-400 font-bold mb-2">Was ist ein "Blackjack"?</h4>
 						<p class="text-blue-100">
-							Ein "Blackjack" ist die bestmögliche Hand und besteht aus einem Ass und einer 10-Punkte-Karte (10, Bube, Dame oder König) direkt nach dem Austeilen. 
-							Ein Blackjack schlägt jede andere Hand mit 21 Punkten.
+							Ein "Blackjack" ist eine Hand, die direkt nach dem Austeilen aus zwei Karten besteht: Einem Ass und einer 10-Punkte-Karte (10, Bube, Dame oder König). 
+							Diese Kombination ergibt exakt 21 Punkte und ist die bestmögliche Hand.
 						</p>
 					</div>
 

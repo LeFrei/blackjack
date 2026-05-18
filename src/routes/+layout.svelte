@@ -16,7 +16,8 @@
 		{ href: `${base}/`, label: 'Spiel' },
 		{ href: `${base}/shop`, label: 'Shop' },
 		{ href: `${base}/stats`, label: 'Statistik' },
-		{ href: `${base}/profile`, label: 'Profil' }
+		{ href: `${base}/profile`, label: 'Profil' },
+		{ href: `${base}/rules`, label: 'Regeln' }
 	];
 </script>
 
